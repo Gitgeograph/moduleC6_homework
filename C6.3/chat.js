@@ -7,11 +7,11 @@ const geolocation = document.querySelector('.location');
 
 function writeToScreen(message, type) {
   let element = document.createElement("p");
-  element.classList.add('msg')
+  element.classList.add('msg');
   element.innerHTML = message;
 
   if (type === 'incoming') {
-    element.classList.add('incoming')
+    element.classList.add('incoming');
   }else if (type === 'link') {
     let link = document.createElement('a');
     link.href = message;
@@ -19,13 +19,13 @@ function writeToScreen(message, type) {
     element.textContent = '';
     element.appendChild(link);
   }
-  output.appendChild(element)
-  inpMessage.value = ''
+  output.appendChild(element);
+  inpMessage.value = '';
 };
 
 let websocket = new WebSocket(wsUrl);
 websocket.onopen = function(evt) {
-  console.log("Connected")
+  console.log("Connected");
 };
 
 btnSend.addEventListener('click', () => {
@@ -33,12 +33,12 @@ btnSend.addEventListener('click', () => {
   writeToScreen(msg);
   websocket.send(msg);
   websocket.onmessage = function(evt) {
-    writeToScreen(msg, 'incoming')
+    writeToScreen(msg, 'incoming');
   };    
 });
 
 const error = () => {
-  writeToScreen('Невозможно получить ваше местоположение')
+  writeToScreen('Невозможно получить ваше местоположение');
 };
 
 const success = (position) => {
